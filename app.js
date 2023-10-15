@@ -1,29 +1,49 @@
-// Get a reference to the Tableau visualization object
-var viz;
+console.log('Is this working?');
 
-function initializeViz() {
-    var containerDiv = document.getElementById('viz1697355061231'); // Use the same ID as in your HTML
-    var options = {
-        hideTabs: true,
-        width: '100%',
-        height: (containerDiv.offsetWidth * 0.75) + 'px',
-        onFirstInteractive: function () {
-            // Store a reference to the visualization object
-            viz = viz.getVizs()[0];
-        }
-    };
-    
-    viz = new tableau.Viz(containerDiv, 'https://public.tableau.com/views/CourseraTableau_16973521766220/Boxplot?:language=en-US&:display_count=n&:origin=viz_share_link', options);
+let viz;
+
+//Add Share Link to Tableau Public in here
+const url = "https://public.tableau.com/views/CourseraTableau_16973521766220/Boxplot?:language=en-US&:display_count=n&:origin=viz_share_link";
+
+const vizContainer = document.getElementById('vizContainer');
+const options = {
+    hideTabs: true,
+    height: 1000,
+    width: 1200,
+    onFirstInteraction: function() {
+        workbook = viz.getWorkbook();
+        activeSheet = workbook.getActiveSheet();
+        console.log("My dashboard is interactive");
+    }
+};
+
+//create a function to generate the viz element
+function initViz() {
+    console.log('Executing the initViz function!');
+    viz = new tableau.Viz(vizContainer, url, options);
 }
 
-// Function to resize the visualization
-function resizeViz() {
-    var containerDiv = document.getElementById('viz1697355061231');
-    viz.setFrameSize(containerDiv.offsetWidth, containerDiv.offsetWidth * 0.75);
+// run the initViz function when the page loads
+document.addEventListener("DOMContentLoaded", initViz);
+
+const exportPDF = document.getElementById('exportPDF');
+const exportImage = document.getElementById('exportImage');
+
+
+//click on the pdf button to generate pdf of dashboard
+function generatePDF() {
+    viz.showExportPDFDialog()
 }
 
-// Add an event listener to resize the visualization when the window is resized
-window.addEventListener('resize', resizeViz);
+exportPDF.addEventListener("click", function () {
+    generatePDF();
+  });
 
-// Call initializeViz when the page loads
-document.addEventListener('DOMContentLoaded', initializeViz);
+//click on image to generate image of dashboard
+function generateImage() {
+    viz.showExportImageDialog()
+}
+
+exportImage.addEventListener("click", function () {
+    generateImage();
+  });
