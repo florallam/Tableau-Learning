@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Tableau-Learning/static/css/main.fe28f338.css",
+    "main.js": "/Tableau-Learning/static/js/main.f7ed5945.js",
+    "index.html": "/Tableau-Learning/index.html",
+    "main.fe28f338.css.map": "/Tableau-Learning/static/css/main.fe28f338.css.map",
+    "main.f7ed5945.js.map": "/Tableau-Learning/static/js/main.f7ed5945.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe28f338.css",
+    "static/js/main.f7ed5945.js"
+  ]
+}
